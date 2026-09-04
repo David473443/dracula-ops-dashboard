@@ -1,18 +1,12 @@
 {
   "$schema": "https://railway.app/railway.schema.json",
   "build": {
-    "builder": "static",
-    "buildCommand": null,
-    "watchPatterns": [
-      "*.html",
-      "*.json",
-      "*.js",
-      "*.css"
-    ]
+    "builder": "nixpacks",
+    "buildCommand": "mkdir -p /opt/data/dracula_video/dashboard && cp index.html calendar.json /opt/data/dracula_video/dashboard/",
+    "watchPatterns": ["*.html", "*.json"]
   },
   "deploy": {
     "numReplicas": 1,
-    "restartPolicyType": "ON_FAILURE",
-    "restartPolicyMaxRetries": 10
+    "restartPolicyType": "ON_FAILURE"
   }
 }
