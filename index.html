@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dracula's Ledger — Ops Dashboard</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap');
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'Inter', sans-serif; background: #0a0a1a; color: #e0e0e0; padding: 24px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  
+  .header { background: linear-gradient(135deg, #1a0a2e 0%, #16213e 50%, #0a0a1a 100%); 
+             border: 1px solid #2a1a4e; border-radius: 16px; padding: 32px; margin-bottom: 24px; 
+             position: relative; overflow: hidden; }
+  .header::before { content: '🧛'; position: absolute; right: 24px; top: 24px; font-size: 64px; opacity: 0.15; }
+  .header h1 { font-size: 28px; font-weight: 900; color: #f0f0ff; }
+  .header .subtitle { font-size: 14px; color: #8888aa; margin-top: 4px; }
+  .header .handle { color: #4FA3D1; font-weight: 600; }
+  
+  .stat-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; margin: 20px 0; }
+  .stat-card { background: #12122a; border: 1px solid #2a1a4e; border-radius: 12px; padding: 16px; text-align: center; }
+  .stat-value { font-size: 32px; font-weight: 800; color: #ffd700; }
+  .stat-label { font-size: 11px; color: #8888aa; margin-top: 4px; text-transform: uppercase; letter-spacing: 1px; }
+  
+  .progress-section { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 20px 0; }
+  @media (max-width: 768px) { .progress-section { grid-template-columns: 1fr; } }
+  .progress-card { background: #12122a; border: 1px solid #2a1a4e; border-radius: 12px; padding: 20px; }
+  .progress-card h3 { font-size: 14px; color: #8888aa; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 12px; }
+  .progress-bar { height: 8px; background: #1a1a3a; border-radius: 4px; overflow: hidden; margin: 8px 0; }
+  .progress-fill { height: 100%; border-radius: 4px; transition: width 0.5s; }
+  .progress-label { display: flex; justify-content: space-between; font-size: 12px; color: #aaaacc; }
+  .progress-value { color: #ffd700; font-weight: 600; }
+  
+  .calendar { display: grid; gap: 16px; }
+  .week { background: #12122a; border: 1px solid #2a1a4e; border-radius: 12px; overflow: hidden; }
+  .week-header { padding: 12px 20px; background: #1a1a3a; font-size: 14px; font-weight: 600; color: #8888aa; }
+  .week-days { display: grid; grid-template-columns: repeat(7, 1fr); }
+  @media (max-width: 900px) { .week-days { grid-template-columns: repeat(4, 1fr); } }
+  @media (max-width: 600px) { .week-days { grid-template-columns: repeat(2, 1fr); } }
+  .day { padding: 12px; border-right: 1px solid #1a1a3a; border-bottom: 1px solid #1a1a3a; }
+  .day:last-child { border-right: none; }
+  .day-date { font-size: 10px; color: #666688; text-transform: uppercase; }
+  .day-topic { font-size: 13px; font-weight: 600; color: #e0e0ff; margin-top: 4px; }
+  .day-repost { color: #ffd700; font-size: 11px; }
+  .day-affiliate { font-size: 10px; color: #4FA3D1; margin-top: 2px; }
+  .day-status { display: inline-block; font-size: 9px; padding: 2px 6px; border-radius: 4px; margin-top: 4px; }
+  .status-ready { background: #00ff7f22; color: #00ff7f; }
+  .status-queued { background: #4fa3d122; color: #4FA3D1; }
+  
+  .meta { margin-top: 24px; text-align: center; font-size: 11px; color: #444466; }
+  .meta span { margin: 0 12px; }
+</style>
+</head>
+<body>
+<div class="container">
+  
+  <!-- HEADER -->
+  <div class="header">
+    <h1>🧛 Dracula's Ledger</h1>
+    <p class="subtitle"><span class="handle">@@draculaslifeinaday</span> · Days & Night · Updated Sep 04, 2026</p>
+  </div>
+  
+  <!-- STATS -->
+  <div class="stat-grid">
+    <div class="stat-card"><div class="stat-value">584</div><div class="stat-label">Total Views</div></div>
+    <div class="stat-card"><div class="stat-value">2</div><div class="stat-label">Subscribers</div></div>
+    <div class="stat-card"><div class="stat-value">10</div><div class="stat-label">Videos Live</div></div>
+    <div class="stat-card"><div class="stat-value">~0.3% (need to improve)</div><div class="stat-label">Conversion</div></div>
+    <div class="stat-card"><div class="stat-value">~~46% (Rule of 72 video)</div><div class="stat-label">Best Retention</div></div>
+    <div class="stat-card"><div class="stat-value">90</div><div class="stat-label">Days to Monetization</div></div>
+  </div>
+  
+  <!-- PROGRESS TOWARDS GOALS -->
+  <div class="progress-section">
+    <div class="progress-card">
+      <h3>🎯 YouTube Ads Goal</h3>
+      <p style="font-size:12px;color:#aaaacc;margin-bottom:8px;">1,000 subs + 10M views in 90 days</p>
+      <div class="progress-label"><span>Subscribers</span><span class="progress-value">2/1,000</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0.2%;background:linear-gradient(90deg,#ffd700,#ff6347);"></div></div>
+      <div class="progress-label" style="margin-top:8px;"><span>Views (Shorts)</span><span class="progress-value">584/10,000,000</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0.006%;background:linear-gradient(90deg,#4FA3D1,#ffd700);"></div></div>
+    </div>
+    <div class="progress-card">
+      <h3>💰 Fan Funding Goal</h3>
+      <p style="font-size:12px;color:#aaaacc;margin-bottom:8px;">500 subs + 3M views + 3 uploads</p>
+      <div class="progress-label"><span>Subscribers</span><span class="progress-value">2/500</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:0.4%;background:linear-gradient(90deg,#00ff7f,#ffd700);"></div></div>
+      <div class="progress-label" style="margin-top:8px;"><span>Uploads This Month</span><span class="progress-value">10/30</span></div>
+      <div class="progress-bar"><div class="progress-fill" style="width:33.3%;background:linear-gradient(90deg,#4FA3D1,#00ff7f);"></div></div>
+    </div>
+  </div>
+  
+  <!-- AFFILIATE LINKS -->
+  <div style="background:#12122a;border:1px solid #2a1a4e;border-radius:12px;padding:20px;margin-bottom:20px;">
+    <h3 style="font-size:14px;color:#8888aa;text-transform:uppercase;letter-spacing:1px;margin-bottom:12px;">🔗 Affiliate Programs — Ready</h3>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px;">
+      <div style="background:#1a1a3a;padding:12px;border-radius:8px;">
+        <div style="font-weight:600;color:#ffd700;">SoFi</div>
+        <div style="font-size:11px;color:#aaaacc;">$80-150 per funded account</div>
+      </div>
+      <div style="background:#1a1a3a;padding:12px;border-radius:8px;">
+        <div style="font-weight:600;color:#ffd700;">M1 Finance</div>
+        <div style="font-size:11px;color:#aaaacc;">$50-70 per funded referral</div>
+      </div>
+      <div style="background:#1a1a3a;padding:12px;border-radius:8px;">
+        <div style="font-weight:600;color:#ffd700;">Acorns</div>
+        <div style="font-size:11px;color:#aaaacc;">Spare-change investing</div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- CONTENT CALENDAR -->
+  <h2 style="font-size:20px;font-weight:800;margin-bottom:16px;color:#f0f0ff;">📅 4-Week Content Calendar</h2>
+  <div class="calendar">
+
+    <div class="week">
+      <div class="week-header">Week 1</div>
+      <div class="week-days">
+
+        <div class="day">
+          <div class="day-date">Mon Aug 31</div>
+          <div class="day-topic">401(k) Match Explained</div>
+          
+          <div class="day-affiliate">📎 SoFi</div>
+          <div class="day-status status-ready">ready</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Tue Sep 01</div>
+          <div class="day-topic">Emergency Fund Reality</div>
+          
+          <div class="day-affiliate">📎 M1 Finance</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Wed Sep 02</div>
+          <div class="day-topic">Debt Snowball Method</div>
+          
+          
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Thu Sep 03</div>
+          <div class="day-topic">50/30/20 Budget Rule</div>
+          
+          <div class="day-affiliate">📎 SoFi</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Fri Sep 04</div>
+          <div class="day-topic">Lifestyle Creep Trap</div>
+          
+          <div class="day-affiliate">📎 M1 Finance</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Sat Sep 05</div>
+          <div class="day-topic">Investing vs Saving</div>
+          
+          <div class="day-affiliate">📎 Acorns</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Sun Sep 06</div>
+          <div class="day-topic">REPOST — Best of Week</div>
+          <div class="day-repost">🔄 REPOST</div>
+          
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week-header">Week 2</div>
+      <div class="week-days">
+
+        <div class="day">
+          <div class="day-date">Mon Sep 07</div>
+          <div class="day-topic">Roth IRA vs Traditional IRA</div>
+          
+          <div class="day-affiliate">📎 SoFi</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Tue Sep 08</div>
+          <div class="day-topic">Index Funds Beat Active</div>
+          
+          <div class="day-affiliate">📎 M1 Finance</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Wed Sep 09</div>
+          <div class="day-topic">Dollar Cost Averaging</div>
+          
+          
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Thu Sep 10</div>
+          <div class="day-topic">Dividend Stocks 101</div>
+          
+          <div class="day-affiliate">📎 SoFi</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Fri Sep 11</div>
+          <div class="day-topic">Inflation Is Silent Thief</div>
+          
+          <div class="day-affiliate">📎 M1 Finance</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Sat Sep 12</div>
+          <div class="day-topic">Compound Interest Visualized</div>
+          
+          <div class="day-affiliate">📎 Acorns</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Sun Sep 13</div>
+          <div class="day-topic">REPOST</div>
+          <div class="day-repost">🔄 REPOST</div>
+          
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week-header">Week 3</div>
+      <div class="week-days">
+
+        <div class="day">
+          <div class="day-date">Mon Sep 14</div>
+          <div class="day-topic">FOMO Investing Is Dumb</div>
+          
+          <div class="day-affiliate">📎 SoFi</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Tue Sep 15</div>
+          <div class="day-topic">Why You're Broke at 30</div>
+          
+          <div class="day-affiliate">📎 M1 Finance</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Wed Sep 16</div>
+          <div class="day-topic">Psychology of Enough</div>
+          
+          
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Thu Sep 17</div>
+          <div class="day-topic">Risk vs Reward Simple</div>
+          
+          <div class="day-affiliate">📎 SoFi</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Fri Sep 18</div>
+          <div class="day-topic">Pareto Principle Money</div>
+          
+          <div class="day-affiliate">📎 M1 Finance</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Sat Sep 19</div>
+          <div class="day-topic">5 People Average</div>
+          
+          <div class="day-affiliate">📎 Acorns</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Sun Sep 20</div>
+          <div class="day-topic">REPOST</div>
+          <div class="day-repost">🔄 REPOST</div>
+          
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="week">
+      <div class="week-header">Week 4</div>
+      <div class="week-days">
+
+        <div class="day">
+          <div class="day-date">Mon Sep 21</div>
+          <div class="day-topic">House Hacking Strategy</div>
+          
+          <div class="day-affiliate">📎 SoFi</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Tue Sep 22</div>
+          <div class="day-topic">Side Hustle Math</div>
+          
+          <div class="day-affiliate">📎 M1 Finance</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Wed Sep 23</div>
+          <div class="day-topic">Credit Score Hacks</div>
+          
+          
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Thu Sep 24</div>
+          <div class="day-topic">Tax-Loss Harvesting</div>
+          
+          <div class="day-affiliate">📎 SoFi</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Fri Sep 25</div>
+          <div class="day-topic">FIRE Movement Simple</div>
+          
+          <div class="day-affiliate">📎 M1 Finance</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Sat Sep 26</div>
+          <div class="day-topic">Month Compilation</div>
+          
+          <div class="day-affiliate">📎 Acorns</div>
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+        <div class="day">
+          <div class="day-date">Sun Sep 27</div>
+          <div class="day-topic">REPOST</div>
+          <div class="day-repost">🔄 REPOST</div>
+          
+          <div class="day-status status-queued">queued</div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+  
+  <div class="meta">
+    <span>🤖 Auto-generated by Hermes Agent</span>
+    <span>📅 Updated 2026-09-04 09:47</span>
+    <span>🧛 Days & Night · @draculaslifeinaday</span>
+  </div>
+  
+</div>
+</body>
+</html>

@@ -1,0 +1,218 @@
+[
+  {
+    "week": 1,
+    "days": [
+      {
+        "date": "Mon Aug 31",
+        "topic": "401(k) Match Explained",
+        "is_repost": false,
+        "affiliate": "SoFi",
+        "status": "ready"
+      },
+      {
+        "date": "Tue Sep 01",
+        "topic": "Emergency Fund Reality",
+        "is_repost": false,
+        "affiliate": "M1 Finance",
+        "status": "queued"
+      },
+      {
+        "date": "Wed Sep 02",
+        "topic": "Debt Snowball Method",
+        "is_repost": false,
+        "affiliate": "None",
+        "status": "queued"
+      },
+      {
+        "date": "Thu Sep 03",
+        "topic": "50/30/20 Budget Rule",
+        "is_repost": false,
+        "affiliate": "SoFi",
+        "status": "queued"
+      },
+      {
+        "date": "Fri Sep 04",
+        "topic": "Lifestyle Creep Trap",
+        "is_repost": false,
+        "affiliate": "M1 Finance",
+        "status": "queued"
+      },
+      {
+        "date": "Sat Sep 05",
+        "topic": "Investing vs Saving",
+        "is_repost": false,
+        "affiliate": "Acorns",
+        "status": "queued"
+      },
+      {
+        "date": "Sun Sep 06",
+        "topic": "REPOST \u2014 Best of Week",
+        "is_repost": true,
+        "affiliate": "None",
+        "status": "queued"
+      }
+    ]
+  },
+  {
+    "week": 2,
+    "days": [
+      {
+        "date": "Mon Sep 07",
+        "topic": "Roth IRA vs Traditional IRA",
+        "is_repost": false,
+        "affiliate": "SoFi",
+        "status": "queued"
+      },
+      {
+        "date": "Tue Sep 08",
+        "topic": "Index Funds Beat Active",
+        "is_repost": false,
+        "affiliate": "M1 Finance",
+        "status": "queued"
+      },
+      {
+        "date": "Wed Sep 09",
+        "topic": "Dollar Cost Averaging",
+        "is_repost": false,
+        "affiliate": "None",
+        "status": "queued"
+      },
+      {
+        "date": "Thu Sep 10",
+        "topic": "Dividend Stocks 101",
+        "is_repost": false,
+        "affiliate": "SoFi",
+        "status": "queued"
+      },
+      {
+        "date": "Fri Sep 11",
+        "topic": "Inflation Is Silent Thief",
+        "is_repost": false,
+        "affiliate": "M1 Finance",
+        "status": "queued"
+      },
+      {
+        "date": "Sat Sep 12",
+        "topic": "Compound Interest Visualized",
+        "is_repost": false,
+        "affiliate": "Acorns",
+        "status": "queued"
+      },
+      {
+        "date": "Sun Sep 13",
+        "topic": "REPOST",
+        "is_repost": true,
+        "affiliate": "None",
+        "status": "queued"
+      }
+    ]
+  },
+  {
+    "week": 3,
+    "days": [
+      {
+        "date": "Mon Sep 14",
+        "topic": "FOMO Investing Is Dumb",
+        "is_repost": false,
+        "affiliate": "SoFi",
+        "status": "queued"
+      },
+      {
+        "date": "Tue Sep 15",
+        "topic": "Why You're Broke at 30",
+        "is_repost": false,
+        "affiliate": "M1 Finance",
+        "status": "queued"
+      },
+      {
+        "date": "Wed Sep 16",
+        "topic": "Psychology of Enough",
+        "is_repost": false,
+        "affiliate": "None",
+        "status": "queued"
+      },
+      {
+        "date": "Thu Sep 17",
+        "topic": "Risk vs Reward Simple",
+        "is_repost": false,
+        "affiliate": "SoFi",
+        "status": "queued"
+      },
+      {
+        "date": "Fri Sep 18",
+        "topic": "Pareto Principle Money",
+        "is_repost": false,
+        "affiliate": "M1 Finance",
+        "status": "queued"
+      },
+      {
+        "date": "Sat Sep 19",
+        "topic": "5 People Average",
+        "is_repost": false,
+        "affiliate": "Acorns",
+        "status": "queued"
+      },
+      {
+        "date": "Sun Sep 20",
+        "topic": "REPOST",
+        "is_repost": true,
+        "affiliate": "None",
+        "status": "queued"
+      }
+    ]
+  },
+  {
+    "week": 4,
+    "days": [
+      {
+        "date": "Mon Sep 21",
+        "topic": "House Hacking Strategy",
+        "is_repost": false,
+        "affiliate": "SoFi",
+        "status": "queued"
+      },
+      {
+        "date": "Tue Sep 22",
+        "topic": "Side Hustle Math",
+        "is_repost": false,
+        "affiliate": "M1 Finance",
+        "status": "queued"
+      },
+      {
+        "date": "Wed Sep 23",
+        "topic": "Credit Score Hacks",
+        "is_repost": false,
+        "affiliate": "None",
+        "status": "queued"
+      },
+      {
+        "date": "Thu Sep 24",
+        "topic": "Tax-Loss Harvesting",
+        "is_repost": false,
+        "affiliate": "SoFi",
+        "status": "queued"
+      },
+      {
+        "date": "Fri Sep 25",
+        "topic": "FIRE Movement Simple",
+        "is_repost": false,
+        "affiliate": "M1 Finance",
+        "status": "queued"
+      },
+      {
+        "date": "Sat Sep 26",
+        "topic": "Month Compilation",
+        "is_repost": false,
+        "affiliate": "Acorns",
+        "status": "queued"
+      },
+      {
+        "date": "Sun Sep 27",
+        "topic": "REPOST",
+        "is_repost": true,
+        "affiliate": "None",
+        "status": "queued"
+      }
+    ]
+  }
+]
